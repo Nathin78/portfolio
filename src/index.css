@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   CLEAN WHITE — DESIGN TOKENS
+   ============================================================ */
+:root {
+  --bg:        #FFFFFF;
+  --primary:   #2563EB;  /* Professional Blue */
+  --secondary: #64748B;  /* Slate Gray */
+  --accent:    #0EA5E9;  /* Sky Blue */
+  --text:      #1E293B;  /* Deep Slate */
+  --card-bg:   #F8FAFC;
+  --border:    #E2E8F0;
+  --border2:   #CBD5E1;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #FFFFFF;
+  color: #1E293B;
+  overflow-x: hidden;
+  line-height: 1.65;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar          { width: 5px; }
+::-webkit-scrollbar-track    { background: #F1F5F9; }
+::-webkit-scrollbar-thumb    { background: #CBD5E1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+/* ============================================================
+   SELECTION
+   ============================================================ */
+::selection { background: rgba(37,99,235,0.15); color: #1E293B; }
+
+/* ============================================================
+   CARD / GLASS (clean white card)
+   ============================================================ */
+@layer components {
+
+  .glass {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+  }
+
+  /* -------- ACCENT TEXT -------- */
+  .gradient-text {
+    color: var(--primary);
+  }
+
+  .gradient-text-2 {
+    color: var(--secondary);
+  }
+
+  /* -------- BUTTONS -------- */
+  .btn-primary {
+    @apply relative overflow-hidden px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300;
+    background: #2563EB;
+    box-shadow: none;
+  }
+  .btn-primary:hover {
+    background: #1D4ED8;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    @apply relative overflow-hidden px-6 py-3 rounded-xl font-semibold transition-all duration-300;
+    background: transparent;
+    border: 1.5px solid #2563EB;
+    color: #2563EB;
+  }
+  .btn-secondary:hover {
+    background: #EFF6FF;
+    transform: translateY(-1px);
+  }
+
+  /* -------- SECTION TITLE -------- */
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold text-center mb-4;
+    font-family: 'Poppins', sans-serif;
+    color: #1E293B;
+  }
+
+  .section-subtitle {
+    @apply text-center mb-16 text-lg max-w-2xl mx-auto;
+    color: #64748B;
+  }
+
+  /* -------- CARD HOVER -------- */
+  .card-hover { @apply transition-all duration-300; }
+  .card-hover:hover {
+    transform: translateY(-3px);
+    border-color: #CBD5E1;
+  }
+
+  /* -------- SECTION PADDING -------- */
+  .section-padding { @apply py-20 px-4 md:px-8 lg:px-16 xl:px-24; }
+}
+
+/* ============================================================
+   SCROLL PROGRESS
+   ============================================================ */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: #2563EB;
+  z-index: 9997;
+  transition: width 0.1s ease;
+}
+
+/* ============================================================
+   BLOBS — hidden in clean theme
+   ============================================================ */
+.blob { display: none; }
+.blob-1, .blob-2, .blob-3 { display: none; }
+
+/* ============================================================
+   TYPING CURSOR
+   ============================================================ */
+.typing-cursor {
+  display: inline-block; width: 2px; height: 1.1em;
+  background: #2563EB;
+  margin-left: 3px; vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* ============================================================
+   SKILL PROGRESS BAR
+   ============================================================ */
+.progress-bar { height: 5px; border-radius: 3px; background: #E2E8F0; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 3px; background: #2563EB; transition: width 1.5s ease-in-out; }
+
+/* ============================================================
+   TIMELINE
+   ============================================================ */
+.timeline-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #2563EB;
+  border: 2px solid #FFFFFF;
+  outline: 2px solid #2563EB;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   PROJECT IMAGE PLACEHOLDER
+   ============================================================ */
+.project-img-placeholder {
+  width:100%; height:200px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:4rem;
+}
+
+/* ============================================================
+   GLOW EFFECTS — disabled
+   ============================================================ */
+.glow-orange  { box-shadow: none; }
+.glow-teal    { box-shadow: none; }
+.glow-gold    { box-shadow: none; }
+.text-glow    { text-shadow: none; }
+.text-glow-teal { text-shadow: none; }
+
+/* ============================================================
+   LOADING SCREEN
+   ============================================================ */
+.loader-ring {
+  width: 60px; height: 60px;
+  border: 3px solid #E2E8F0;
+  border-top-color: #2563EB;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ============================================================
+   FORM INPUTS
+   ============================================================ */
+.form-input {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 0.875rem 1.25rem;
+  color: #1E293B;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+  outline: none;
+}
+.form-input:focus {
+  border-color: #2563EB;
+}
+.form-input::placeholder { color: #94A3B8; }
+
+/* ============================================================
+   BACK TO TOP
+   ============================================================ */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem;
+  width: 44px; height: 44px; border-radius: 10px;
+  background: #2563EB;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; z-index:1000;
+  transition: background 0.2s ease;
+}
+.back-to-top:hover { background: #1D4ED8; }
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+.modal-overlay {
+  position:fixed; inset:0; background:rgba(15,23,42,0.5);
+  backdrop-filter:blur(4px); z-index:10000;
+  display:flex; align-items:center; justify-content:center; padding:1rem;
+}
+.modal-content {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px; padding: 2rem;
+  max-width: 620px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+}
+
+/* ============================================================
+   CERT CARD
+   ============================================================ */
+.circle-card { position:relative; overflow:hidden; }
+.cert-card { position:relative; overflow:hidden; }
+.cert-card::before {
+  content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
+  background: linear-gradient(90deg,transparent,rgba(37,99,235,0.04),transparent);
+  transition: left 0.5s ease;
+}
+.cert-card:hover::before { left:100%; }
+
+/* ============================================================
+   NAV ACTIVE
+   ============================================================ */
+.nav-active { color: #2563EB; position:relative; }
+.nav-active::after {
+  content:''; position:absolute; bottom:-2px; left:0; right:0;
+  height:2px; background: #2563EB; border-radius:1px;
+}
+
+/* ============================================================
+   FLOATING ICONS
+   ============================================================ */
+.floating-icon { animation: float 6s ease-in-out infinite; }
+.floating-icon:nth-child(2) { animation-delay:1s; }
+.floating-icon:nth-child(3) { animation-delay:2s; }
+.floating-icon:nth-child(4) { animation-delay:3s; }
+.floating-icon:nth-child(5) { animation-delay:4s; }
+
+/* ============================================================
+   ACHIEVEMENT VALUE
+   ============================================================ */
+.achievement-value {
+  font-family:'Poppins',sans-serif; font-weight:800; font-size:3rem;
+  color: #2563EB;
+}
+
+/* ============================================================
+   GRID OVERLAY (hero)
+   ============================================================ */
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:768px) {
+  .section-padding { @apply py-14 px-4; }
+}
+
+/* ============================================================
+   SECTION DIVIDER
+   ============================================================ */
+.section-divider {
+  height: 1px;
+  background: #E2E8F0;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   BORDER ACCENT
+   ============================================================ */
+.border-flame {
+  border: 1.5px solid #E2E8F0;
+}

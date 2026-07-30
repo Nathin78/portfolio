@@ -6,7 +6,7 @@ const BackToTop = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setVisible(window.scrollY > 300);
+    const handleScroll = () => setVisible(window.scrollY > 360);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -17,16 +17,16 @@ const BackToTop = () => {
     <AnimatePresence>
       {visible && (
         <motion.button
-          initial={{ opacity: 0, scale: 0.5, y: 20 }}
+          initial={{ opacity: 0, scale: 0.6, y: 18 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.5, y: 20 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          exit={{ opacity: 0, scale: 0.6, y: 18 }}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.94 }}
           onClick={scrollToTop}
           className="back-to-top"
           aria-label="Back to top"
         >
-          <FiArrowUp size={20} color="white" />
+          <FiArrowUp size={20} color="#08111f" />
         </motion.button>
       )}
     </AnimatePresence>

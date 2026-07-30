@@ -1,12 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  FaCode,
-  FaReact,
-  FaServer,
-  FaDatabase,
-  FaTools,
-} from "react-icons/fa";
+import { FaCode, FaReact, FaServer, FaDatabase, FaTools } from "react-icons/fa";
 import { skillsData } from "../../data/constants";
 
 const iconMap = {
@@ -20,14 +14,14 @@ const iconMap = {
 const SkillBar = ({ name, level, color, delay }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, x: -20 }}
+      initial={{ opacity: 0, x: -16 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
-      transition={{ delay, duration: 0.5 }}
+      transition={{ delay, duration: 0.45 }}
       className="mb-4"
     >
-      <div className="flex justify-between items-center mb-1.5">
-        <span className="text-sm font-medium text-gray-300">{name}</span>
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-sm font-medium text-slate-200">{name}</span>
         <span className="text-xs font-bold" style={{ color }}>
           {level}%
         </span>
@@ -38,8 +32,7 @@ const SkillBar = ({ name, level, color, delay }) => {
           initial={{ width: 0 }}
           whileInView={{ width: `${level}%` }}
           viewport={{ once: true }}
-          transition={{ delay: delay + 0.2, duration: 1.2, ease: "easeOut" }}
-          style={{ background: `linear-gradient(90deg, ${color}, ${color}99)` }}
+          transition={{ delay: delay + 0.15, duration: 1.1, ease: "easeOut" }}
         />
       </div>
     </motion.div>
@@ -49,116 +42,109 @@ const SkillBar = ({ name, level, color, delay }) => {
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState("all");
 
-  const categories = ["all", ...skillsData.map((s) => s.category)];
-
+  const categories = ["all", ...skillsData.map((skill) => skill.category)];
   const filtered =
     activeCategory === "all"
       ? skillsData
-      : skillsData.filter((s) => s.category === activeCategory);
+      : skillsData.filter((skill) => skill.category === activeCategory);
 
   return (
-    <section
-      id="skills"
-      className="section-padding relative overflow-hidden"
-    >
-      {/* Background */}
+    <section id="skills" className="section-padding relative overflow-hidden">
       <div
-        className="absolute inset-0 opacity-10 pointer-events-none"
+        className="absolute inset-0 opacity-30 pointer-events-none"
         style={{
-          backgroundImage:
-            "radial-gradient(circle at 20% 80%, #00E8C8 0%, transparent 50%)",
+          background:
+            "radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.16), transparent 34%), radial-gradient(circle at 85% 80%, rgba(245, 158, 11, 0.12), transparent 32%)",
         }}
       />
 
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
+      <div className="max-w-7xl mx-auto relative">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
-          <span className="text-primary text-sm font-semibold tracking-widest uppercase">
-            What I Know
-          </span>
+          <p className="section-kicker">What I know</p>
           <h2 className="section-title mt-2">
-            Technical{" "}
-            <span className="gradient-text">Skills</span>
+            Technical <span className="gradient-text">skills</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mt-4" />
+          <p className="section-subtitle mt-5">
+            A focused set of tools and technologies I use to build sturdy backend systems
+            and polished interfaces.
+          </p>
         </motion.div>
 
-        {/* Category Filter */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-3 mb-12"
+          className="flex flex-wrap justify-center gap-3 mb-10"
         >
-          {categories.map((cat) => (
+          {categories.map((category) => (
             <motion.button
-              key={cat}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
-                activeCategory === cat
-                  ? "text-white shadow-lg"
-                  : "glass text-gray-400 hover:text-white"
+              key={category}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              onClick={() => setActiveCategory(category)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                activeCategory === category
+                  ? "text-slate-950"
+                  : "glass text-slate-300 hover:text-white"
               }`}
               style={
-                activeCategory === cat
-                  ? { background: "#2563EB", color: "#fff" }
-                  : {}
+                activeCategory === category
+                  ? { background: "linear-gradient(135deg, #fbbf24, #8b5cf6)" }
+                  : undefined
               }
             >
-              {cat === "all" ? "All Skills" : cat}
+              {category === "all" ? "All Skills" : category}
             </motion.button>
           ))}
         </motion.div>
 
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((category, ci) => {
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {filtered.map((category, index) => {
             const Icon = iconMap[category.icon];
+
             return (
               <motion.div
                 key={category.category}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 36 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: ci * 0.1 }}
+                transition={{ delay: index * 0.08 }}
                 whileHover={{ y: -6 }}
-                className="glass rounded-2xl p-6 card-hover"
-                style={{ borderColor: `${category.color}30` }}
+                className="glass-strong rounded-[1.75rem] p-6 card-hover"
+                style={{ borderColor: `${category.color}2a` }}
               >
-                {/* Card Header */}
                 <div className="flex items-center gap-3 mb-6">
                   <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center"
+                    className="w-12 h-12 rounded-2xl flex items-center justify-center"
                     style={{
                       background: `${category.color}18`,
-                      border: `1px solid ${category.color}40`,
+                      border: `1px solid ${category.color}3a`,
                     }}
                   >
                     {Icon && <Icon size={20} style={{ color: category.color }} />}
                   </div>
-                  <h3
-                    className="text-base font-semibold"
-                    style={{ fontFamily: "Poppins, sans-serif" }}
-                  >
-                    {category.category}
-                  </h3>
+                  <div>
+                    <h3 className="text-lg font-bold" style={{ fontFamily: "Space Grotesk, sans-serif" }}>
+                      {category.category}
+                    </h3>
+                    <p className="text-xs uppercase tracking-[0.22em] text-slate-500">
+                      Capability cluster
+                    </p>
+                  </div>
                 </div>
 
-                {/* Skills */}
-                {category.skills.map((skill, si) => (
+                {category.skills.map((skill, skillIndex) => (
                   <SkillBar
                     key={skill.name}
                     name={skill.name}
                     level={skill.level}
                     color={category.color}
-                    delay={ci * 0.1 + si * 0.08}
+                    delay={index * 0.08 + skillIndex * 0.06}
                   />
                 ))}
               </motion.div>
@@ -166,33 +152,31 @@ const Skills = () => {
           })}
         </div>
 
-        {/* Floating Skill Logos */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="mt-16 flex flex-wrap justify-center gap-6"
+          transition={{ delay: 0.2 }}
+          className="mt-16 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4"
         >
           {[
-            { name: "Java", emoji: "☕", color: "#2563EB" },
-            { name: "React", emoji: "⚛️", color: "#0EA5E9" },
-            { name: "Spring", emoji: "🍃", color: "#64748B" },
-            { name: "MySQL", emoji: "🐬", color: "#2563EB" },
-            { name: "Git", emoji: "📦", color: "#0EA5E9" },
-            { name: "Node.js", emoji: "🟢", color: "#64748B" },
-          ].map(({ name, emoji, color }, i) => (
+            { name: "Java", badge: "Backend", color: "#f59e0b" },
+            { name: "React", badge: "Frontend", color: "#22d3ee" },
+            { name: "Spring", badge: "API", color: "#8b5cf6" },
+            { name: "MySQL", badge: "Database", color: "#f59e0b" },
+            { name: "Git", badge: "Versioning", color: "#22d3ee" },
+            { name: "Tailwind", badge: "UI", color: "#8b5cf6" },
+          ].map((item, index) => (
             <motion.div
-              key={name}
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
-              className="glass rounded-2xl px-5 py-3 flex items-center gap-3"
-              style={{ borderColor: `${color}40` }}
+              key={item.name}
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 3, repeat: Infinity, delay: index * 0.25 }}
+              className="glass rounded-2xl px-4 py-4 text-center"
             >
-              <span className="text-xl">{emoji}</span>
-              <span className="text-sm font-medium" style={{ color }}>
-                {name}
-              </span>
+              <p className="text-sm font-semibold text-white">{item.name}</p>
+              <p className="text-[11px] uppercase tracking-[0.24em] mt-1" style={{ color: item.color }}>
+                {item.badge}
+              </p>
             </motion.div>
           ))}
         </motion.div>

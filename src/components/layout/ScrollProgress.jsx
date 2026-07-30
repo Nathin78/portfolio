@@ -9,7 +9,10 @@ const ScrollProgress = () => {
       const current = window.scrollY;
       setProgress(total > 0 ? (current / total) * 100 : 0);
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 

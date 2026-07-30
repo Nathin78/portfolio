@@ -5,33 +5,32 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative py-12 px-4 border-t border-slate-200">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-50 to-transparent pointer-events-none" />
+    <footer className="relative mt-8 border-t border-white/10">
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-slate-950/80 to-transparent" />
 
-      <div className="relative max-w-7xl mx-auto">
-        {/* Top Row */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
-          {/* Brand */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center text-white font-bold">
+      <div className="relative max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-24 py-12">
+        <div className="grid gap-8 md:grid-cols-2 md:items-center">
+          <div className="flex items-center gap-4">
+            <div
+              className="w-12 h-12 rounded-2xl flex items-center justify-center text-slate-950 font-bold"
+              style={{ background: "linear-gradient(135deg, #fbbf24, #8b5cf6)" }}
+            >
               N
             </div>
             <div>
-              <h3 className="font-bold text-lg gradient-text" style={{ fontFamily: "Poppins, sans-serif" }}>
+              <h3 className="text-xl font-bold" style={{ fontFamily: "Space Grotesk, sans-serif" }}>
                 Nathin A N
               </h3>
-              <p className="text-gray-400 text-xs">Software Developer</p>
+              <p className="text-sm text-slate-400">Software Developer</p>
             </div>
           </div>
 
-          {/* Social */}
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-3 md:justify-end">
             <a
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 glass rounded-xl flex items-center justify-center text-slate-400 hover:text-blue-600 hover:border-blue-200 transition-all duration-300 hover:-translate-y-1"
+              className="w-11 h-11 rounded-2xl glass flex items-center justify-center text-slate-300 hover:text-white transition-all duration-300 hover:-translate-y-1"
               aria-label="GitHub"
             >
               <FaGithub size={18} />
@@ -40,14 +39,14 @@ const Footer = () => {
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 glass rounded-xl flex items-center justify-center text-slate-400 hover:text-sky-500 hover:border-sky-200 transition-all duration-300 hover:-translate-y-1"
+              className="w-11 h-11 rounded-2xl glass flex items-center justify-center text-slate-300 hover:text-white transition-all duration-300 hover:-translate-y-1"
               aria-label="LinkedIn"
             >
               <FaLinkedin size={18} />
             </a>
             <a
               href={`mailto:${personalInfo.email}`}
-              className="w-10 h-10 glass rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-600 hover:border-slate-300 transition-all duration-300 hover:-translate-y-1"
+              className="w-11 h-11 rounded-2xl glass flex items-center justify-center text-slate-300 hover:text-white transition-all duration-300 hover:-translate-y-1"
               aria-label="Email"
             >
               <FaEnvelope size={18} />
@@ -55,23 +54,17 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="h-px bg-slate-200 mb-8" />
+        <div className="section-divider my-8" />
 
-        {/* Bottom */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-gray-400">
-          <p>
-            Designed & Developed with{" "}
-            <FaHeart className="inline text-red-400 mx-1" size={12} />
-            by{" "}
-            <span className="gradient-text font-semibold">Nathin A N</span>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-sm text-slate-400">
+          <p className="flex items-center gap-2">
+            Designed with
+            <FaHeart className="text-rose-400" size={12} />
+            by <span className="gradient-text font-semibold">Nathin A N</span>
           </p>
           <p>© {year} All Rights Reserved</p>
-          <p className="text-xs">
-            Built with{" "}
-            <span className="text-primary">React</span> •{" "}
-            <span className="text-secondary">Tailwind CSS</span> •{" "}
-            <span className="text-accent">Framer Motion</span>
+          <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+            React / Tailwind / Framer Motion
           </p>
         </div>
       </div>

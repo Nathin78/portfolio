@@ -1,6 +1,4 @@
-// ============================================================
-// PORTFOLIO CONSTANTS — Nathin A N (Volcanic Aurora Theme)
-// ============================================================
+// Portfolio constants for Nathin A N
 
 export const personalInfo = {
   name: "Nathin A N",
@@ -35,7 +33,7 @@ export const skillsData = [
   {
     category: "Programming Languages",
     icon: "FaCode",
-    color: "#C084FC", // Electric Lavender
+    color: "#C084FC",
     skills: [
       { name: "Java", level: 90 },
       { name: "SQL", level: 85 },
@@ -47,7 +45,7 @@ export const skillsData = [
   {
     category: "Frontend",
     icon: "FaReact",
-    color: "#FFB86C", // Neon Amber-Peach
+    color: "#FFB86C",
     skills: [
       { name: "React.js", level: 85 },
       { name: "Tailwind CSS", level: 88 },
@@ -56,7 +54,7 @@ export const skillsData = [
   {
     category: "Backend",
     icon: "FaServer",
-    color: "#A78BFA", // Violet
+    color: "#A78BFA",
     skills: [
       { name: "Spring Boot", level: 88 },
       { name: "Node.js", level: 70 },
@@ -65,13 +63,13 @@ export const skillsData = [
   {
     category: "Database",
     icon: "FaDatabase",
-    color: "#C084FC", // Electric Lavender
+    color: "#C084FC",
     skills: [{ name: "MySQL", level: 87 }],
   },
   {
     category: "Tools",
     icon: "FaTools",
-    color: "#FFB86C", // Neon Amber-Peach
+    color: "#FFB86C",
     skills: [
       { name: "Git", level: 85 },
       { name: "GitHub", level: 88 },
@@ -85,14 +83,14 @@ export const experienceData = [
   {
     id: 1,
     company: "Infosys Springboard",
-    role: "Intern — Springboard Internship 6.0",
-    duration: "Feb 2026 – Apr 2026",
+    role: "Intern - Springboard Internship 6.0",
+    duration: "Feb 2026 - Apr 2026",
     type: "Internship",
     description:
       "Developed an Intelligent Home Energy Optimizer for real-time monitoring, consumption analysis, power optimization, reporting, and actionable insights.",
     highlights: [
       "Real-time energy monitoring dashboard",
-      "Consumption analysis & reporting",
+      "Consumption analysis and reporting",
       "Power optimization algorithms",
       "Actionable insights generation",
     ],
@@ -177,7 +175,7 @@ export const educationData = [
     degree: "BE Computer Science Engineering",
     institution: "V.S.B Engineering College",
     score: "CGPA: 7.37",
-    duration: "2024 – 2027",
+    duration: "2024 - 2027",
     icon: "🎓",
     color: "#C084FC",
     type: "Bachelor's Degree",
@@ -187,7 +185,7 @@ export const educationData = [
     degree: "Diploma in Computer Science",
     institution: "Nachimuthu Polytechnic College",
     score: "72%",
-    duration: "2021 – 2024",
+    duration: "2021 - 2024",
     icon: "📚",
     color: "#FFB86C",
     type: "Diploma",
@@ -197,7 +195,7 @@ export const educationData = [
     degree: "SSLC",
     institution: "Ponnu Matriculation Higher Secondary School",
     score: "Completed",
-    duration: "2020 – 2021",
+    duration: "2020 - 2021",
     icon: "🏫",
     color: "#A78BFA",
     type: "Secondary Education",
@@ -209,7 +207,8 @@ export const certificationsData = [
     id: 1,
     title: "Programming in Java",
     issuer: "NPTEL",
-    description: "Comprehensive Java programming certification covering OOP, data structures, and advanced concepts.",
+    description:
+      "Comprehensive Java programming certification covering OOP, data structures, and advanced concepts.",
     icon: "☕",
     color: "#C084FC",
     gradient: "from-[#C084FC] to-[#FFB86C]",
@@ -219,7 +218,7 @@ export const certificationsData = [
     id: 2,
     title: "Infosys Springboard Internship",
     issuer: "Infosys",
-    description: "Completed Springboard Internship 6.0 — developed an Intelligent Home Energy Optimizer.",
+    description: "Completed Springboard Internship 6.0 - developed an Intelligent Home Energy Optimizer.",
     icon: "⚡",
     color: "#FFB86C",
     gradient: "from-[#FFB86C] to-[#A78BFA]",
@@ -229,7 +228,8 @@ export const certificationsData = [
     id: 3,
     title: "Machine Learning Using Python Workshop",
     issuer: "Workshop Certification",
-    description: "Hands-on workshop covering ML algorithms, Python libraries (NumPy, Pandas, Scikit-learn), and model building.",
+    description:
+      "Hands-on workshop covering ML algorithms, Python libraries (NumPy, Pandas, Scikit-learn), and model building.",
     icon: "🧠",
     color: "#A78BFA",
     gradient: "from-[#A78BFA] to-[#C084FC]",

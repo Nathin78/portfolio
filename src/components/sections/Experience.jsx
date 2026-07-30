@@ -5,122 +5,113 @@ import { experienceData } from "../../data/constants";
 const Experience = () => {
   return (
     <section id="experience" className="section-padding relative overflow-hidden">
-      {/* Background */}
       <div
-        className="absolute inset-0 opacity-10 pointer-events-none"
+        className="absolute inset-0 opacity-25 pointer-events-none"
         style={{
-          backgroundImage: "radial-gradient(circle at 80% 50%, #00E8C8 0%, transparent 60%)",
+          background:
+            "radial-gradient(circle at 82% 50%, rgba(34, 211, 238, 0.12), transparent 34%), radial-gradient(circle at 18% 50%, rgba(245, 158, 11, 0.12), transparent 36%)",
         }}
       />
 
-      <div className="max-w-5xl mx-auto">
-        {/* Header */}
+      <div className="max-w-5xl mx-auto relative">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
-          <span className="text-primary text-sm font-semibold tracking-widest uppercase">
-            Work History
-          </span>
+          <p className="section-kicker">Work history</p>
           <h2 className="section-title mt-2">
-            My{" "}
-            <span className="gradient-text">Experience</span>
+            Experience <span className="gradient-text">timeline</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mt-4" />
+          <p className="section-subtitle mt-5">
+            One internship, but a strong signal of building real systems with measurable outcomes.
+          </p>
         </motion.div>
 
-        {/* Timeline */}
         <div className="relative">
-          {/* Vertical line */}
-          <div className="hidden md:block absolute left-8 top-0 bottom-0 w-0.5"
-            style={{ background: "linear-gradient(to bottom, #2563EB, #CBD5E1, transparent)" }}
+          <div
+            className="hidden md:block absolute left-8 top-0 bottom-0 w-px"
+            style={{
+              background:
+                "linear-gradient(to bottom, rgba(245, 158, 11, 0.8), rgba(139, 92, 246, 0.5), transparent)",
+            }}
           />
 
-          {experienceData.map((exp, i) => (
+          {experienceData.map((experience, index) => (
             <motion.div
-              key={exp.id}
-              initial={{ opacity: 0, x: -60 }}
+              key={experience.id}
+              initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.2, duration: 0.6 }}
+              transition={{ delay: index * 0.12, duration: 0.55 }}
               className="relative md:pl-24 mb-8"
             >
-              {/* Timeline Dot */}
               <div
-                className="hidden md:flex absolute left-0 top-6 w-16 h-16 rounded-2xl items-center justify-center text-2xl"
+                className="hidden md:flex absolute left-0 top-5 w-16 h-16 rounded-3xl items-center justify-center text-2xl glass-strong"
                 style={{
-                  background: `linear-gradient(135deg, ${exp.color}25, ${exp.color}10)`,
-                  border: `1px solid ${exp.color}40`,
-                  boxShadow: "none",
+                  background: `linear-gradient(135deg, ${experience.color}18, rgba(8, 17, 31, 0.92))`,
+                  borderColor: `${experience.color}3a`,
                 }}
               >
-                {exp.logo}
+                {experience.logo}
               </div>
 
-              {/* Card */}
               <motion.div
                 whileHover={{ y: -4 }}
-                className="glass rounded-2xl p-6 md:p-8 card-hover"
-                style={{ borderColor: `${exp.color}30` }}
+                className="glass-strong rounded-[1.75rem] p-6 md:p-8 card-hover"
+                style={{ borderColor: `${experience.color}30` }}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
                   <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <span
-                        className="px-3 py-1 rounded-full text-xs font-bold"
-                        style={{
-                          background: `${exp.color}20`,
-                          color: exp.color,
-                          border: `1px solid ${exp.color}40`,
-                        }}
-                      >
-                        {exp.type}
-                      </span>
-                    </div>
-                    <h3
-                      className="text-xl font-bold mt-2"
-                      style={{ fontFamily: "Poppins, sans-serif" }}
+                    <span
+                      className="inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em]"
+                      style={{
+                        background: `${experience.color}18`,
+                        color: experience.color,
+                        border: `1px solid ${experience.color}3a`,
+                      }}
                     >
-                      {exp.role}
+                      {experience.type}
+                    </span>
+                    <h3
+                      className="text-2xl font-bold mt-3"
+                      style={{ fontFamily: "Space Grotesk, sans-serif" }}
+                    >
+                      {experience.role}
                     </h3>
-                    <p className="gradient-text font-semibold text-lg">{exp.company}</p>
+                    <p className="text-amber-100 font-semibold text-lg">{experience.company}</p>
                   </div>
 
-                  <div
-                    className="flex items-center gap-2 glass px-4 py-2 rounded-xl text-sm text-gray-300 whitespace-nowrap"
-                  >
-                    <FaCalendarAlt size={12} style={{ color: exp.color }} />
-                    {exp.duration}
+                  <div className="inline-flex items-center gap-2 rounded-2xl glass px-4 py-2 text-sm text-slate-300 whitespace-nowrap">
+                    <FaCalendarAlt size={12} style={{ color: experience.color }} />
+                    {experience.duration}
                   </div>
                 </div>
 
-                <p className="text-gray-300 leading-relaxed mb-5">{exp.description}</p>
+                <p className="text-slate-300 leading-relaxed mb-5">{experience.description}</p>
 
-                {/* Highlights */}
-                <div className="grid sm:grid-cols-2 gap-2 mb-5">
-                  {exp.highlights.map((h) => (
-                    <div key={h} className="flex items-center gap-2 text-sm text-gray-300">
-                      <FaCheckCircle size={12} style={{ color: exp.color }} className="flex-shrink-0" />
-                      {h}
+                <div className="grid sm:grid-cols-2 gap-3 mb-6">
+                  {experience.highlights.map((highlight) => (
+                    <div key={highlight} className="flex items-center gap-2 text-sm text-slate-200">
+                      <FaCheckCircle size={12} style={{ color: experience.color }} className="flex-shrink-0" />
+                      {highlight}
                     </div>
                   ))}
                 </div>
 
-                {/* Tech Used */}
                 <div className="flex flex-wrap gap-2 pt-4 border-t border-white/10">
-                  {exp.tech.map((t) => (
+                  {experience.tech.map((tech) => (
                     <span
-                      key={t}
-                      className="px-3 py-1 rounded-lg text-xs font-medium"
+                      key={tech}
+                      className="px-3 py-1 rounded-full text-xs font-medium"
                       style={{
-                        background: `${exp.color}15`,
-                        color: exp.color,
-                        border: `1px solid ${exp.color}30`,
+                        background: `${experience.color}14`,
+                        color: "#fff7cc",
+                        border: `1px solid ${experience.color}24`,
                       }}
                     >
-                      {t}
+                      {tech}
                     </span>
                   ))}
                 </div>

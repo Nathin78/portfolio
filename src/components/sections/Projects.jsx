@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt, FaInfoCircle, FaTimes, FaCheck } from "react-icons/fa";
+import {
+  FaGithub,
+  FaExternalLinkAlt,
+  FaInfoCircle,
+  FaTimes,
+  FaCheck,
+} from "react-icons/fa";
 import { projectsData } from "../../data/constants";
 
 const ProjectModal = ({ project, onClose }) => (
@@ -14,75 +20,67 @@ const ProjectModal = ({ project, onClose }) => (
         onClick={onClose}
       >
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 30 }}
+          initial={{ opacity: 0, scale: 0.92, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 30 }}
+          exit={{ opacity: 0, scale: 0.92, y: 20 }}
           className="modal-content"
-          onClick={(e) => e.stopPropagation()}
+          onClick={(event) => event.stopPropagation()}
         >
-          {/* Header */}
-          <div className="flex items-start justify-between mb-6">
+          <div className="flex items-start justify-between gap-4 mb-6">
             <div>
-              <div className="text-4xl mb-2">{project.icon}</div>
-              <h3
-                className="text-2xl font-bold gradient-text"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-              >
+              <div className="text-5xl mb-3">{project.icon}</div>
+              <h3 className="text-2xl md:text-3xl font-bold" style={{ fontFamily: "Space Grotesk, sans-serif" }}>
                 {project.title}
               </h3>
             </div>
             <button
               onClick={onClose}
-              className="w-9 h-9 glass rounded-xl flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+              className="w-10 h-10 rounded-2xl glass flex items-center justify-center text-slate-300 hover:text-white transition-colors"
               aria-label="Close modal"
             >
               <FaTimes size={16} />
             </button>
           </div>
 
-          {/* Description */}
-          <p className="text-gray-300 mb-6 leading-relaxed">{project.longDescription}</p>
+          <p className="text-slate-300 mb-6 leading-relaxed">{project.longDescription}</p>
 
-          {/* Features */}
           <div className="mb-6">
-            <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-3">
+            <h4 className="text-xs uppercase tracking-[0.3em] text-slate-500 mb-3">
               Key Features
             </h4>
-            <div className="grid grid-cols-2 gap-2">
-              {project.features.map((f) => (
-                <div key={f} className="flex items-center gap-2 text-sm text-gray-300">
-                  <FaCheck size={10} className="text-[#00E8C8] flex-shrink-0" />
-                  {f}
+            <div className="grid sm:grid-cols-2 gap-2">
+              {project.features.map((feature) => (
+                <div key={feature} className="flex items-center gap-2 text-sm text-slate-200">
+                  <FaCheck size={10} className="text-emerald-400 flex-shrink-0" />
+                  {feature}
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Tech Stack */}
-          <div className="mb-6">
-            <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-3">
+          <div className="mb-8">
+            <h4 className="text-xs uppercase tracking-[0.3em] text-slate-500 mb-3">
               Tech Stack
             </h4>
             <div className="flex flex-wrap gap-2">
-              {project.tech.map((t) => (
+              {project.tech.map((tech) => (
                 <span
-                  key={t}
-                  className="px-3 py-1.5 rounded-lg text-xs font-medium text-blue-600"
-                  style={{ background: "#EFF6FF", border: "1px solid #BFDBFE" }}
+                  key={tech}
+                  className="px-3 py-1.5 rounded-full text-xs font-medium text-slate-900"
+                  style={{ background: "linear-gradient(135deg, #fbbf24, #8b5cf6)" }}
                 >
-                  {t}
+                  {tech}
                 </span>
               ))}
             </div>
           </div>
 
-          {/* Actions */}
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary flex items-center gap-2 text-sm flex-1 justify-center"
+              className="btn-primary flex-1 gap-2"
             >
               <FaGithub size={14} />
               GitHub
@@ -91,7 +89,7 @@ const ProjectModal = ({ project, onClose }) => (
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-secondary flex items-center gap-2 text-sm flex-1 justify-center"
+              className="btn-secondary flex-1 gap-2"
             >
               <FaExternalLinkAlt size={12} />
               Live Demo
@@ -108,85 +106,78 @@ const Projects = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const allTechs = ["all", ...new Set(projectsData.flatMap((p) => p.category))];
+  const allTechs = ["all", ...new Set(projectsData.flatMap((project) => project.category))];
 
-  const filtered = projectsData.filter((p) => {
-    const matchFilter = activeFilter === "all" || p.category.includes(activeFilter);
-    const matchSearch =
-      !searchQuery ||
-      p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.tech.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchFilter && matchSearch;
+  const filtered = projectsData.filter((project) => {
+    const matchesFilter = activeFilter === "all" || project.category.includes(activeFilter);
+    const query = searchQuery.toLowerCase();
+    const matchesSearch =
+      !query ||
+      project.title.toLowerCase().includes(query) ||
+      project.description.toLowerCase().includes(query) ||
+      project.tech.some((tech) => tech.toLowerCase().includes(query));
+
+    return matchesFilter && matchesSearch;
   });
 
   return (
     <section id="projects" className="section-padding relative overflow-hidden">
-      {/* Background */}
       <div
-        className="absolute inset-0 opacity-10 pointer-events-none"
+        className="absolute inset-0 opacity-30 pointer-events-none"
         style={{
-          backgroundImage: "radial-gradient(circle at 50% 50%, #2563EB 0%, transparent 70%)",
+          background:
+            "radial-gradient(circle at 50% 30%, rgba(245, 158, 11, 0.14), transparent 30%), radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.15), transparent 28%)",
         }}
       />
 
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
+      <div className="max-w-7xl mx-auto relative">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
-          <span className="text-primary text-sm font-semibold tracking-widest uppercase">
-            My Work
-          </span>
+          <p className="section-kicker">Selected output</p>
           <h2 className="section-title mt-2">
-            Featured{" "}
-            <span className="gradient-text">Projects</span>
+            Featured <span className="gradient-text">projects</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mt-4" />
+          <p className="section-subtitle mt-5">
+            A curated set of applications that blend backend reliability with interface polish.
+          </p>
         </motion.div>
 
-        {/* Search + Filter */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-col sm:flex-row gap-4 mb-10"
+          className="flex flex-col lg:flex-row gap-4 mb-10"
         >
-          {/* Search */}
           <div className="relative flex-1">
             <input
               type="text"
               placeholder="Search projects..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="form-input pr-10 w-full"
+              onChange={(event) => setSearchQuery(event.target.value)}
+              className="form-input pl-12 pr-4 w-full"
               id="project-search"
             />
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
-              🔍
-            </span>
+            <FaInfoCircle className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
           </div>
 
-          {/* Filter Pills */}
           <div className="flex flex-wrap gap-2">
             {allTechs.map((tech) => (
               <motion.button
                 key={tech}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
                 onClick={() => setActiveFilter(tech)}
-                className={`px-4 py-2 rounded-xl text-xs font-medium transition-all duration-300 ${
-                  activeFilter === tech
-                    ? "text-white"
-                    : "glass text-gray-400 hover:text-white"
+                className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 ${
+                  activeFilter === tech ? "text-slate-950" : "glass text-slate-300 hover:text-white"
                 }`}
                 style={
                   activeFilter === tech
-                    ? { background: "#2563EB", color: "#fff" }
-                    : {}
+                    ? { background: "linear-gradient(135deg, #fbbf24, #8b5cf6)" }
+                    : undefined
                 }
               >
                 {tech === "all" ? "All" : tech}
@@ -195,87 +186,79 @@ const Projects = () => {
           </div>
         </motion.div>
 
-        {/* Project Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
           <AnimatePresence>
-            {filtered.map((project, i) => (
-              <motion.div
+            {filtered.map((project, index) => (
+              <motion.article
                 key={project.id}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ delay: i * 0.1 }}
+                initial={{ opacity: 0, y: 28, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20, scale: 0.96 }}
+                transition={{ delay: index * 0.06 }}
                 whileHover={{ y: -8 }}
-                className="glass rounded-2xl overflow-hidden group card-hover"
+                className="glass-strong rounded-[1.75rem] overflow-hidden group card-hover"
               >
-                {/* Project Image / Placeholder */}
-                <div
-                  className={`project-img-placeholder bg-gradient-to-br ${project.gradient} relative overflow-hidden`}
-                >
-                  <div className="text-6xl opacity-40">{project.icon}</div>
-                  {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                <div className={`project-img-placeholder bg-gradient-to-br ${project.gradient}`}>
+                  <div className="text-6xl md:text-7xl opacity-40">{project.icon}</div>
+                  <div className="absolute inset-0 bg-slate-950/0 group-hover:bg-slate-950/30 transition-colors duration-300" />
+                  <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-white/30 transition-all"
-                      onClick={(e) => e.stopPropagation()}
+                      className="w-10 h-10 rounded-2xl bg-white/10 backdrop-blur flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+                      onClick={(event) => event.stopPropagation()}
                       aria-label="GitHub"
                     >
-                      <FaGithub size={16} />
+                      <FaGithub size={15} />
                     </a>
                     <a
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-white/30 transition-all"
-                      onClick={(e) => e.stopPropagation()}
+                      className="w-10 h-10 rounded-2xl bg-white/10 backdrop-blur flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+                      onClick={(event) => event.stopPropagation()}
                       aria-label="Live Demo"
                     >
-                      <FaExternalLinkAlt size={14} />
+                      <FaExternalLinkAlt size={13} />
                     </a>
                   </div>
                 </div>
 
-                {/* Content */}
                 <div className="p-6">
                   <h3
-                    className="text-lg font-bold mb-2 group-hover:text-primary transition-colors"
-                    style={{ fontFamily: "Poppins, sans-serif" }}
+                    className="text-xl font-bold mb-2 group-hover:text-amber-200 transition-colors"
+                    style={{ fontFamily: "Space Grotesk, sans-serif" }}
                   >
                     {project.title}
                   </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">
+                  <p className="text-slate-400 text-sm leading-relaxed mb-5 line-clamp-3">
                     {project.description}
                   </p>
 
-                  {/* Tech Badges */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((t) => (
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {project.tech.map((tech) => (
                       <span
-                        key={t}
-                        className="px-2 py-1 rounded-lg text-xs font-medium"
+                        key={tech}
+                        className="px-2.5 py-1 rounded-full text-[11px] font-medium border"
                         style={{
-                          background: "#EFF6FF",
-                          color: "#2563EB",
-                          border: "1px solid #BFDBFE",
+                          background: "rgba(148, 163, 184, 0.08)",
+                          color: "#e5edf9",
+                          borderColor: "rgba(148, 163, 184, 0.16)",
                         }}
                       >
-                        {t}
+                        {tech}
                       </span>
                     ))}
                   </div>
 
-                  {/* Actions */}
-                  <div className="flex gap-2">
+                  <div className="grid grid-cols-3 gap-2">
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-medium text-gray-300 hover:text-white transition-colors"
-                      style={{ background: "rgba(255,255,255,0.05)" }}
+                      className="rounded-2xl py-2 flex items-center justify-center gap-1.5 text-xs font-medium glass text-slate-200 hover:text-white transition-colors"
                     >
                       <FaGithub size={12} />
                       Code
@@ -284,23 +267,26 @@ const Projects = () => {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-medium text-gray-300 hover:text-white transition-colors"
-                      style={{ background: "rgba(255,255,255,0.05)" }}
+                      className="rounded-2xl py-2 flex items-center justify-center gap-1.5 text-xs font-medium glass text-slate-200 hover:text-white transition-colors"
                     >
                       <FaExternalLinkAlt size={10} />
                       Demo
                     </a>
                     <button
                       onClick={() => setSelectedProject(project)}
-                      className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-medium text-blue-600 hover:bg-blue-50 transition-colors"
-                      style={{ border: "1px solid #BFDBFE" }}
+                      className="rounded-2xl py-2 flex items-center justify-center gap-1.5 text-xs font-medium"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(139, 92, 246, 0.12))",
+                        border: "1px solid rgba(245, 158, 11, 0.18)",
+                        color: "#fff7cc",
+                      }}
                     >
                       <FaInfoCircle size={12} />
                       Details
                     </button>
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </AnimatePresence>
         </div>
@@ -309,7 +295,7 @@ const Projects = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center py-20 text-gray-500"
+            className="text-center py-20 text-slate-400"
           >
             <div className="text-5xl mb-4">🔍</div>
             <p>No projects match your search.</p>
@@ -317,7 +303,6 @@ const Projects = () => {
         )}
       </div>
 
-      {/* Modal */}
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </section>
   );

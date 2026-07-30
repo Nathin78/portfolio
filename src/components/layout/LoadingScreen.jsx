@@ -9,12 +9,14 @@ const LoadingScreen = ({ onComplete }) => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          setTimeout(onComplete, 400);
+          setTimeout(onComplete, 350);
           return 100;
         }
-        return prev + Math.random() * 15 + 5;
+
+        return Math.min(prev + Math.random() * 16 + 6, 100);
       });
-    }, 80);
+    }, 70);
+
     return () => clearInterval(interval);
   }, [onComplete]);
 
@@ -22,68 +24,74 @@ const LoadingScreen = ({ onComplete }) => {
     <AnimatePresence>
       <motion.div
         initial={{ opacity: 1 }}
-        exit={{ opacity: 0, scale: 1.05 }}
-        transition={{ duration: 0.5 }}
-        className="fixed inset-0 z-[9999] flex flex-col items-center justify-center"
-        style={{ background: "#FFFFFF" }}
+        exit={{ opacity: 0, scale: 1.03 }}
+        transition={{ duration: 0.45 }}
+        className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden"
+        style={{
+          background:
+            "radial-gradient(circle at 20% 20%, rgba(245, 158, 11, 0.14), transparent 28%), radial-gradient(circle at 80% 30%, rgba(139, 92, 246, 0.16), transparent 30%), linear-gradient(180deg, #050a14 0%, #08111f 60%, #091425 100%)",
+        }}
       >
-        {/* Blobs */}
-        <div className="blob blob-1" />
-        <div className="blob blob-2" />
+        <div className="blob blob-1 absolute -top-20 -left-20 opacity-50" />
+        <div className="blob blob-2 absolute top-24 right-10 opacity-50" />
+        <div className="blob blob-3 absolute bottom-16 left-1/2 opacity-40" />
 
-        {/* Logo */}
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, type: "spring" }}
-          className="mb-8"
-        >
-          <div
-            className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center text-white font-bold text-3xl"
-            style={{ boxShadow: "none" }}
+        <div className="relative z-10 w-full max-w-md mx-auto px-6 text-center">
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, type: "spring" }}
+            className="mx-auto mb-8 w-24 h-24 rounded-[28px] flex items-center justify-center text-4xl font-bold text-slate-950 shadow-2xl"
+            style={{ background: "linear-gradient(135deg, #fbbf24, #8b5cf6)" }}
           >
             N
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="section-kicker mb-4"
+          >
+            Building the stage
+          </motion.p>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 }}
+            className="text-3xl md:text-4xl font-bold mb-2"
+            style={{ fontFamily: "Space Grotesk, sans-serif" }}
+          >
+            Nathin A N
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.35 }}
+            className="text-slate-400 text-sm mb-10"
+          >
+            Software Developer
+          </motion.p>
+
+          <div className="loader-ring mx-auto mb-6" />
+
+          <div className="glass-strong rounded-full p-1 overflow-hidden">
+            <motion.div
+              className="h-2 rounded-full"
+              style={{
+                width: `${Math.min(progress, 100)}%`,
+                background: "linear-gradient(90deg, #f59e0b, #22d3ee, #8b5cf6)",
+              }}
+              transition={{ duration: 0.08 }}
+            />
           </div>
-        </motion.div>
 
-        {/* Name */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="text-3xl font-bold text-slate-800 mb-2"
-          style={{ fontFamily: "Poppins, sans-serif" }}
-        >
-          Nathin A N
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="text-slate-400 text-sm mb-10"
-        >
-          Software Developer
-        </motion.p>
-
-        {/* Loader Ring */}
-        <div className="loader-ring mb-6" />
-
-        {/* Progress Bar */}
-        <div className="w-48 h-1 bg-white/10 rounded-full overflow-hidden">
-          <motion.div
-            className="h-full rounded-full"
-            style={{
-              background: "var(--primary)",
-              width: `${Math.min(progress, 100)}%`,
-            }}
-            transition={{ duration: 0.1 }}
-          />
+          <p className="text-xs text-slate-400 mt-3 font-mono tracking-[0.25em]">
+            {Math.min(Math.round(progress), 100)}%
+          </p>
         </div>
-
-        <p className="text-gray-500 text-xs mt-3 font-mono">
-          {Math.min(Math.round(progress), 100)}%
-        </p>
       </motion.div>
     </AnimatePresence>
   );

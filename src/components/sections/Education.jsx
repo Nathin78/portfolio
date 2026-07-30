@@ -4,117 +4,108 @@ import { educationData } from "../../data/constants";
 const Education = () => {
   return (
     <section id="education" className="section-padding relative overflow-hidden">
-      {/* Background */}
       <div
-        className="absolute inset-0 opacity-10 pointer-events-none"
+        className="absolute inset-0 opacity-25 pointer-events-none"
         style={{
-          backgroundImage: "radial-gradient(circle at 20% 30%, #2563EB 0%, transparent 60%)",
+          background:
+            "radial-gradient(circle at 18% 30%, rgba(139, 92, 246, 0.14), transparent 34%), radial-gradient(circle at 82% 70%, rgba(245, 158, 11, 0.1), transparent 36%)",
         }}
       />
 
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
+      <div className="max-w-4xl mx-auto relative">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
-          <span className="text-primary text-sm font-semibold tracking-widest uppercase">
-            Academic Background
-          </span>
+          <p className="section-kicker">Academic path</p>
           <h2 className="section-title mt-2">
-            My{" "}
-            <span className="gradient-text">Education</span>
+            Education <span className="gradient-text">trail</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mt-4" />
+          <p className="section-subtitle mt-5">
+            A progression from diploma to degree, with each stage reinforcing the same core:
+            build, learn, repeat.
+          </p>
         </motion.div>
 
-        {/* Timeline */}
         <div className="relative">
-          {/* Center line — desktop */}
           <div
-            className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5"
-            style={{ background: "linear-gradient(to bottom, #2563EB, #CBD5E1, transparent)" }}
+            className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px"
+            style={{
+              background:
+                "linear-gradient(to bottom, rgba(245, 158, 11, 0.8), rgba(139, 92, 246, 0.45), transparent)",
+            }}
           />
 
-          {educationData.map((edu, i) => {
-            const isLeft = i % 2 === 0;
+          {educationData.map((education, index) => {
+            const isLeft = index % 2 === 0;
+
             return (
               <motion.div
-                key={edu.id}
-                initial={{ opacity: 0, x: isLeft ? -60 : 60 }}
+                key={education.id}
+                initial={{ opacity: 0, x: isLeft ? -48 : 48 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.2, duration: 0.6 }}
+                transition={{ delay: index * 0.12, duration: 0.55 }}
                 className={`relative flex items-center mb-10 ${
                   isLeft ? "md:flex-row" : "md:flex-row-reverse"
                 } flex-col md:gap-0 gap-4`}
               >
-                {/* Card */}
                 <div className="w-full md:w-[calc(50%-2.5rem)]">
                   <motion.div
-                    whileHover={{ y: -6, scale: 1.02 }}
-                    className="glass rounded-2xl p-6 card-hover"
-                    style={{ borderColor: `${edu.color}35` }}
+                    whileHover={{ y: -6, scale: 1.01 }}
+                    className="glass-strong rounded-[1.75rem] p-6 card-hover"
+                    style={{ borderColor: `${education.color}30` }}
                   >
-                    <div className="flex items-center gap-3 mb-3">
+                    <div className="flex items-center gap-3 mb-4">
                       <div
-                        className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
+                        className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl"
                         style={{
-                          background: `${edu.color}20`,
-                          border: `1px solid ${edu.color}40`,
+                          background: `${education.color}18`,
+                          border: `1px solid ${education.color}3a`,
                         }}
                       >
-                        {edu.icon}
+                        {education.icon}
                       </div>
                       <div>
                         <span
-                          className="text-xs font-semibold px-2.5 py-0.5 rounded-full"
+                          className="inline-flex rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.22em]"
                           style={{
-                            background: `${edu.color}20`,
-                            color: edu.color,
+                            background: `${education.color}16`,
+                            color: education.color,
                           }}
                         >
-                          {edu.type}
+                          {education.type}
                         </span>
-                        <p className="text-xs text-gray-400 mt-0.5">{edu.duration}</p>
+                        <p className="text-xs text-slate-500 mt-1">{education.duration}</p>
                       </div>
                     </div>
 
-                    <h3
-                      className="text-base font-bold mb-1"
-                      style={{ fontFamily: "Poppins, sans-serif" }}
-                    >
-                      {edu.degree}
+                    <h3 className="text-lg font-bold mb-1" style={{ fontFamily: "Space Grotesk, sans-serif" }}>
+                      {education.degree}
                     </h3>
-                    <p className="text-blue-600 text-sm font-medium mb-1">{edu.institution}</p>
-                    <p
-                      className="text-sm font-bold"
-                      style={{ color: edu.color }}
-                    >
-                      {edu.score}
+                    <p className="text-slate-200 text-sm font-medium mb-1">{education.institution}</p>
+                    <p className="text-sm font-semibold" style={{ color: education.color }}>
+                      {education.score}
                     </p>
                   </motion.div>
                 </div>
 
-                {/* Center Dot */}
                 <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 z-10">
                   <motion.div
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: i * 0.2 + 0.3, type: "spring" }}
+                    transition={{ delay: index * 0.12 + 0.2, type: "spring" }}
                     className="w-5 h-5 rounded-full"
                     style={{
-                      background: `linear-gradient(135deg, ${edu.color}, #CBD5E1)`,
-                      border: "3px solid #FFFFFF",
-                      boxShadow: "none",
+                      background: `linear-gradient(135deg, ${education.color}, #f59e0b)`,
+                      border: "3px solid rgba(8, 17, 31, 0.95)",
                     }}
                   />
                 </div>
 
-                {/* Spacer for opposite side */}
                 <div className="hidden md:block w-[calc(50%-2.5rem)]" />
               </motion.div>
             );

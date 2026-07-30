@@ -383,14 +383,6 @@ const Hero = () => {
                       </div>
                     </div>
 
-                    <div className="rounded-3xl border border-white/6 bg-slate-900/65 p-4 font-mono text-xs text-slate-400">
-                      <p className="text-slate-500 mb-2">// tech stack signal</p>
-                      <p className="text-amber-100">Java{" "}{`{`}</p>
-                      <p className="pl-4">Spring Boot, MySQL</p>
-                      <p className="text-amber-100 mt-1">React{" "}{`{`}</p>
-                      <p className="pl-4">Tailwind, Framer Motion</p>
-                      <p className="text-amber-100 mt-1">{"}"}</p>
-                    </div>
                   </div>
                 </div>
               </div>

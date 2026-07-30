@@ -310,13 +310,13 @@ const Hero = () => {
               transform: `translate(${mousePos.x * 0.35}px, ${mousePos.y * 0.35}px)`,
               transition: "transform 0.12s ease",
             }}
-            className="relative lg:pt-10"
+            className="relative w-full max-w-[620px] mx-auto xl:mx-0 xl:justify-self-end xl:pt-10"
           >
             <div className="glass-strong rounded-[2rem] p-4 md:p-5 overflow-hidden">
               <div className="relative rounded-[1.75rem] overflow-hidden border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-amber-400/10 via-transparent to-violet-500/10" />
-                <div className="grid md:grid-cols-[1fr_0.9fr] gap-0">
-                  <div className="relative min-h-[320px] md:min-h-[520px]">
+                <div className="grid 2xl:grid-cols-[1.08fr_0.92fr] gap-0">
+                  <div className="relative min-h-[320px] md:min-h-[420px]">
                     <img
                       src="/profile.png"
                       alt="Nathin A N"
@@ -348,13 +348,15 @@ const Hero = () => {
                       <p className="text-[11px] uppercase tracking-[0.28em] text-slate-500 mb-3">
                         Snapshot
                       </p>
-                      <div className="grid grid-cols-3 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 2xl:grid-cols-3 gap-3">
                         {stats.map((item) => (
-                          <div key={item.label} className="rounded-2xl glass p-3">
+                          <div key={item.label} className="min-w-0 rounded-2xl glass p-3 text-center">
                             <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500 mb-1">
                               {item.label}
                             </p>
-                            <p className="text-sm font-semibold text-white">{item.value}</p>
+                            <p className="text-sm font-semibold text-white break-words leading-snug">
+                              {item.value}
+                            </p>
                           </div>
                         ))}
                       </div>
@@ -372,9 +374,9 @@ const Hero = () => {
                         ].map((line) => (
                           <div
                             key={line}
-                            className="flex gap-3 rounded-2xl bg-slate-900/55 border border-white/5 p-3 text-sm text-slate-300"
+                            className="flex items-start gap-3 rounded-2xl bg-slate-900/55 border border-white/5 p-3 text-sm text-slate-300"
                           >
-                            <span className="mt-1 h-2 w-2 rounded-full bg-amber-300" />
+                            <span className="mt-1.5 h-2 w-2 rounded-full bg-amber-300 flex-shrink-0" />
                             <span>{line}</span>
                           </div>
                         ))}

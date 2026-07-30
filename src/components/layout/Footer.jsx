@@ -56,14 +56,14 @@ const Footer = () => {
 
         <div className="section-divider my-8" />
 
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-sm text-slate-400">
-          <p className="flex items-center gap-2">
+        <div className="grid gap-3 text-sm text-slate-400 md:grid-cols-3 md:items-center">
+          <p className="flex items-center justify-center md:justify-start gap-2 text-center md:text-left">
             Designed with
             <FaHeart className="text-rose-400" size={12} />
             by <span className="gradient-text font-semibold">Nathin A N</span>
           </p>
-          <p>© {year} All Rights Reserved</p>
-          <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+          <p className="text-center">© {year} All Rights Reserved</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-slate-500 text-center md:text-right">
             React / Tailwind / Framer Motion
           </p>
         </div>

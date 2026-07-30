@@ -170,7 +170,7 @@ const Hero = () => {
       <div className="absolute inset-0 grid-overlay opacity-30 pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10 max-w-7xl mx-auto w-full px-4 md:px-8 lg:px-16 xl:px-24 py-14 md:py-20">
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 items-start">
           <div className="text-center lg:text-left">
             <motion.div
               initial={{ opacity: 0, y: 18 }}
@@ -310,7 +310,7 @@ const Hero = () => {
               transform: `translate(${mousePos.x * 0.35}px, ${mousePos.y * 0.35}px)`,
               transition: "transform 0.12s ease",
             }}
-            className="relative"
+            className="relative lg:pt-10"
           >
             <div className="glass-strong rounded-[2rem] p-4 md:p-5 overflow-hidden">
               <div className="relative rounded-[1.75rem] overflow-hidden border border-white/5">

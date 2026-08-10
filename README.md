@@ -227,9 +227,6 @@ This is my personal portfolio project, but suggestions and improvements are alwa
 
 If you find an issue or have an idea, feel free to create an issue or submit a pull request.
 
-## 📄 License
-
-This project is intended for personal and portfolio purposes.
 
 ## 📬 Contact
 

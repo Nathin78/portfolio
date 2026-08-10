@@ -234,8 +234,6 @@ This project is intended for personal and portfolio purposes.
 ## 📬 Contact
 
 **Nathin**
-
-* GitHub: https://github.com/Nathin78
 * LinkedIn: https://www.linkedin.com/in/nathin-a-n-51b2852a5/
 
 Feel free to connect with me for collaboration, opportunities, or interesting software projects.

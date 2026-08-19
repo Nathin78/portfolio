@@ -4,10 +4,6 @@ Welcome to my personal portfolio website! 🚀
 
 This project showcases my **skills, projects, education, experience, and technical journey** as a software developer. The portfolio is designed with a modern, responsive interface and interactive animations to provide a smooth and engaging user experience.
 
-## 🌐 Live Portfolio
-
-🔗 **Portfolio:** Add your deployed website URL here
-
 ## 👨‍💻 About Me
 
 Hi, I'm **Nathin**, a passionate software developer interested in building modern and scalable web applications.

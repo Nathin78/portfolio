@@ -229,10 +229,3 @@ If you find an issue or have an idea, feel free to create an issue or submit a p
 **Nathin**
 * LinkedIn: https://www.linkedin.com/in/nathin-a-n-51b2852a5/
 
-Feel free to connect with me for collaboration, opportunities, or interesting software projects.
-
----
-
-⭐ **If you like this portfolio, consider giving the repository a star!**
-
-### Built with ❤️ using React, TypeScript, Vite & Tailwind CSS.

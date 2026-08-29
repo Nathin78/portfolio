@@ -223,7 +223,6 @@ This is my personal portfolio project, but suggestions and improvements are alwa
 
 If you find an issue or have an idea, feel free to create an issue or submit a pull request.
 
-
 ## 📬 Contact
 
 **Nathin**

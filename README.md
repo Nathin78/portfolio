@@ -1,6 +1,6 @@
 # 💻 Nathin — Personal Portfolio
 
-Welcome to my personal portfolio website! 🚀
+Welcome to my personal portfolio 🚀
 
 This project showcases my **skills, projects, education, experience, and technical journey** as a software developer. The portfolio is designed with a modern, responsive interface and interactive animations to provide a smooth and engaging user experience.
 
